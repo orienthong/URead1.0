@@ -5,8 +5,7 @@
 
 
 #import <SMS_SDK/SMSSDK.h>
-
-//#import "YALFoldingTabBarController.h"
+#import "YALFoldingTabBarController.h"
 //#import "YALTabBarItem.h"
 //#import "FoldingTabBar.h"
 //#import "CAAnimation+YALTabBarViewAnimations.h"
