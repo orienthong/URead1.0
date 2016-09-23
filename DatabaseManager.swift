@@ -2,7 +2,7 @@
 //  DatabaseManager.swift
 //  URead1.0
 //
-//  Created by Hao Dong on 9/17/16.
+//  Created by Hao Dong on 9/20/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
 //
 
@@ -10,21 +10,130 @@ import Foundation
 import RealmSwift
 
 class DatabaseManager {
-    let realm: Realm!
+    let realm = try! Realm()
+    var articles: Results<ArticleInfo>
+    var origins: Results<OriginInfo>
+    var collections: Results<CollectionInfo>
+    var unlikes: Results<UnlickInfo>
     
     static let sharedInstance = DatabaseManager()
     
-    private init() {
-        let config = Realm.Configuration(schemaVersion: 17, migrationBlock: {
-             migration, oldSchemaVersion in
-            migration.deleteData("Uread")
-            })
-        realm = try! Realm(configuration: config)
+    init () {
+        articles = realm.objects(ArticleInfo)
+        origins = realm.objects(OriginInfo)
+        collections = realm.objects(CollectionInfo)
+        unlikes = realm.objects(UnlickInfo)
     }
     
-    init(realm: Realm) {
-        self.realm = realm
+    //MARK: -ArticleKit
+    func addArticle(article: ArticleInfo) {
+        try! realm.write({
+            realm.add(article, update: true)
+        })
+        print("Add article \(article.title)")
+    }
+    /**
+     
+    */
+    func getArticles() -> Results<ArticleInfo> {
+        return articles
+    }
+    func getArticlesCount() -> Int {
+        return articles.count
+    }
+    func deleteArticles() {
+        
+        try! realm.write {
+            realm.delete(articles)
+            
+        }
+    }
+    func getArticlesByfilter(filter: NSPredicate) -> Results<ArticleInfo> {
+        return articles.filter(filter)
+    }
+    
+    //MARK: -CollectionKit
+    // 获取所有文章
+    func getCollections() -> Results<CollectionInfo> {
+        return collections
+    }
+    // 筛选符合要求的文章
+    func getCollectionsByfilter(filter: NSPredicate) -> Results<CollectionInfo> {
+        return collections.filter(filter)
+    }
+    // 获取本地文章总数
+    func getCollectionsCount() -> Int {
+        return collections.count
+    }
+    func addCollections(collections: [CollectionInfo]) {
+        try! realm.write {
+            realm.add(collections, update: true)
+        }
+    }
+    func deleteCollections(collections: Results<CollectionInfo>) {
+        try! realm.write {
+            print(collections)
+            realm.delete(collections)
+            print("delete")
+        }
+    }
+    func clearCollections() {
+        try! realm.write {
+            realm.delete(collections)
+        }
+    }
+    // 查询某篇文章是否已经收藏
+    func chechIsCollection(collectionId: String) -> Bool{
+        if collections.filter("collectionId = %@", collectionId).count == 0 {
+            return false
+        }else {
+            return true
+        }
+        
+    }
+    //MARK: -UnlikeKit
+    // 获取所有文章
+    func getUnlikes() -> Results<UnlickInfo> {
+        return unlikes
+    }
+    // 筛选符合要求的文章
+    func getUnlikesByfilter(filter: NSPredicate) -> Results<UnlickInfo> {
+        return unlikes.filter(filter)
     }
     
     
+    // 获取本地文章总数
+    func getUnlikesCount() -> Int {
+        return unlikes.count
+    }
+    
+    // 插入一些文章
+    func addUnlikesArticles(collections: [UnlickInfo]) {
+            try! realm.write{
+                realm.add(collections, update: true)
+            }
+    }
+    
+    // 删除一些文章
+    func deleteUnlikes(_unlikes: Results<UnlickInfo>) {
+        try! realm.write{
+            print(_unlikes)
+            realm.delete(_unlikes)
+            print("deleted")
+        }
+    }
+    // 清空文章数据
+    func clearUnlikes() {
+        try! realm.write {
+            realm.delete(unlikes)
+        }
+    }
+    // 查询某篇文章是否已经收藏
+    func chechIsUnlike(url: String) -> Bool{
+        if unlikes.filter("url = %@", url).count == 0 {
+            return false
+        }else {
+            return true
+        }
+    }
 }

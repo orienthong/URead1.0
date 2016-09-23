@@ -12,7 +12,7 @@ import CryptoSwift
 
 public let serverURL: String = "http://lab.jinkey.io/"
 
-private func paramURLEncoding(apiName apiName: String) -> ParameterEncoding {
+public func paramURLEncoding(apiName apiName: String) -> ParameterEncoding {
     return ParameterEncoding.Custom({ (request, params) -> (NSMutableURLRequest, NSError?) in
         let urlEncoding = Alamofire.ParameterEncoding.URLEncodedInURL
         let (urlRequest, error) = urlEncoding.encode(request, parameters: params)
@@ -149,4 +149,8 @@ public func loginByMobile(phone: String, withAreaCode areaCode: String, password
             failureHandler?(reason: .LoginByUnRegisteUser, errorMessage: "该手机号未注册，请前往注册")
         }
     })
+}
+
+public func loadingArticles() {
+    
 }

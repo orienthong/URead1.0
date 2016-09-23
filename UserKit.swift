@@ -12,9 +12,8 @@ import RealmSwift
 
 // Models
 
-
-
 public struct LoginUser: CustomStringConvertible {
+    
     public let accessToken: String
     public let userID: String
     public let username: String?
@@ -33,3 +32,37 @@ public func saveTokenAndUserInfoOfLoginUser(loginUser: LoginUser) {
     userDefault.setObject(loginUser.username, forKey: userNameKey)
     
 }
+
+class UserKit {
+    static let sharedInstance = UserKit()
+    
+    let dbManager = DatabaseManager.sharedInstance
+    
+    var UserId: String? {
+        get {
+            if let UserId = NSUserDefaults.standardUserDefaults().stringForKey(userIDKey) {
+                if UserId == "" {
+                    return nil
+                }
+                return UserId
+            } else {
+                return nil
+            }
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: userIDKey)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    
+    var isLoggedIn: Bool {
+        return UserId != nil
+    }
+    
+    func logout() {
+        self.UserId = nil
+    }
+    
+}
+

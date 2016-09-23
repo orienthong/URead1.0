@@ -56,8 +56,8 @@ class LoginByMobileViewController: UIViewController, UITextFieldDelegate {
                 showAlert("登录错误", message: errorMessage!)
             }
             }, completion: { loginUser in
-                //saveTokenAndUserInfoOfLoginUser(loginUser)
-                //print(NSUserDefaults.standardUserDefaults().objectForKey(v1AccessTokenKey)!)
+                saveTokenAndUserInfoOfLoginUser(loginUser)
+                print(NSUserDefaults.standardUserDefaults().objectForKey(v1AccessTokenKey)!)
                 print("login")
         })
     }
@@ -72,8 +72,6 @@ class LoginByMobileViewController: UIViewController, UITextFieldDelegate {
             return true
         }
     }
-    
-    
     //MARK: -Controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
