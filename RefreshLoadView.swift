@@ -29,7 +29,7 @@ enum ActionState{
     
 }
 
-public class RefreshLoadView: UIView{
+public class RefreshLoadView: UIView {
     
     public var delegate :RefreshLoadViewDelegate?
     
@@ -79,7 +79,7 @@ public class RefreshLoadView: UIView{
         //self.addSubview(background)
         
         arrowLayer.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y-picWidth, picWidth, picHeight)
-        let path = NSBundle(forClass: RefreshLoadView.self).pathForResource("arrow", ofType: "png")
+        _ = NSBundle(forClass: RefreshLoadView.self).pathForResource("arrow", ofType: "png")
         arrowLayer.contents = nil
         arrowLayer.contentsGravity = kCAGravityResizeAspect
         arrowLayer.contentsScale = UIScreen.mainScreen().scale
@@ -317,13 +317,7 @@ public class RefreshLoadView: UIView{
                 
             }
         )
-        
-        
-        
     }
-    
-    
-    
     public func endLoadMore(tableView: UITableView) {
         
         self.nowItem += self.pageItems
@@ -350,20 +344,12 @@ public class RefreshLoadView: UIView{
                     if self.state != .Normal{
                         self.setState(.Normal)
                     }
-                    
-                    
                     tableView.reloadData()
                     
                 }
             )
         }
-        
-        
-        
-        
-        
-        
-        
+    
     }
     
     public func setData(Data: NSMutableArray){

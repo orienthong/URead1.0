@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import MJRefresh
 
 class ArticleKit {
     
@@ -16,7 +15,11 @@ class ArticleKit {
     
     static let sharedInstance = ArticleKit()
     
-    func loadArticles(ifLogin login: Bool, method: RefreshArticleMethod, atPageIndex pageIndex: String = "1", completionHandler: (Bool, String?) -> Void){
+    
+    
+    
+    
+    func loadArticles(ifLogin login: Bool, method: RefreshArticleMethod, atPageIndex pageIndex: String = "1", completionHandler: (Bool, String?) -> Void) {
         
         if method == RefreshArticleMethod.LoadingMore {
             if login {

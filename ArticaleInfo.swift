@@ -26,6 +26,8 @@ class ArticleInfo: Object {
     dynamic var read_times = 0
     
     
+    
+    
     override static func primaryKey() -> String? {
         return "id"
     }

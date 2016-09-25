@@ -97,6 +97,7 @@ class RegisterByMobleController: UIViewController, ElasticMenuTransitionDelegate
         })
     }
     
+    
     //MARK: -Controller Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

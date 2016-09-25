@@ -10,8 +10,7 @@ import UIKit
 import LocalAuthentication
 import AlamofireImage
 import RealmSwift
-//import MJRefresh
-
+import ESPullToRefresh
 
 enum RefreshArticleMethod {
     case PullToRefresh
@@ -21,7 +20,6 @@ enum RefreshArticleMethod {
 class ArticleTableViewController: UITableViewController {
     
     let articleKit = ArticleKit.sharedInstance
-    
     let dbManager = DatabaseManager.sharedInstance
     
     var  page = 1
@@ -35,6 +33,24 @@ class ArticleTableViewController: UITableViewController {
     
     var latestOffset: CGFloat = 0
     var lastArticle: Int = 0
+    
+    
+    func initRefreshControl() {
+//        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        let header = ESRefreshHeaderAnimator()
+        let _ = self.tableView.es_addPullToRefresh(animator: header, handler: {
+            [weak self] in
+            self?.refresh()
+        })
+        self.tableView.es_addPullToRefresh { 
+            [weak self] in
+            self?.tableView.es_stopPullToRefresh(completion: true)
+            
+        }
+    }
+    func refresh() {
+        
+    }
     
     @IBAction func addInformationOrigin(sender: AnyObject) {
         let isLogin = UserKit.sharedInstance.isLoggedIn
