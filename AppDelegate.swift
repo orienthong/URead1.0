@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        setUpButton()
+        //setUpButton()
         SMSSDK.registerApp("10ca1ca54efa2", withSecret: "fe6e4cc786a6fa2093a7860cc9161997")
         var config = Realm.Configuration()
         config.deleteRealmIfMigrationNeeded = true

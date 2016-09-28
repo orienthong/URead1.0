@@ -7,11 +7,12 @@
 //
 
 import Foundation
-import RealmSwift
 
 
 // Models
-
+/**
+ LoginUser 没有使用Realm存储，直接存在NSDefault
+ */
 public struct LoginUser: CustomStringConvertible {
     
     public let accessToken: String

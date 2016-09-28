@@ -35,8 +35,8 @@ class ArticleTableViewController: UITableViewController {
     var lastArticle: Int = 0
     
     
+    
     func initRefreshControl() {
-//        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
         let header = ESRefreshHeaderAnimator()
         let _ = self.tableView.es_addPullToRefresh(animator: header, handler: {
             [weak self] in
@@ -59,30 +59,21 @@ class ArticleTableViewController: UITableViewController {
             let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginView")
             self.presentViewController(loginView, animated: true, completion: nil)
         }else {
-//            addSomething()
+            
         }
     }
     //MARK: - Controller Life
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-//            
-//        })
-        // 清除空白行
         tableView.tableFooterView = UIView(frame:CGRectZero)
         tableView.rowHeight = UITableViewAutomaticDimension
         initLoadMoreView()
         print(dbManager.getArticlesCount())
         getMyArticleList(.PullToRefresh)
-
     }
     
     override func viewDidAppear(animated: Bool) {
-//        if dbManager.getArticlesCount() == 0 {
-//            getMyArticleList(.PullToRefresh)
-//        } else {
-//            tableView.reloadData()
-//        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -153,7 +144,6 @@ class ArticleTableViewController: UITableViewController {
         articleWebView.targetURL = article.link
         self.hidesBottomBarWhenPushed = true
         presentViewController(articleWebView, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(articleWebView, animated: true)
         self.hidesBottomBarWhenPushed = false
     }
     override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {

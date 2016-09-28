@@ -103,8 +103,8 @@ class ArticleWebviewController: UIViewController, UIWebViewDelegate {
         self.navigationController?.navigationBar.alpha = 0.9
         
         let progressBarHeight: CGFloat = 2.0
-        let navigationBarBounds = self.navigationController!.navigationBar.bounds
-        let barFrame = CGRect(x: 0, y: navigationBarBounds.size.height - progressBarHeight, width: navigationBarBounds.width, height: progressBarHeight)
+        let navigationBarBounds = self.navigationController?.navigationBar.bounds
+        let barFrame = CGRect(x: 0, y: navigationBarBounds!.size.height - progressBarHeight, width: navigationBarBounds!.width, height: progressBarHeight)
         progressView = UIProgressView(frame: barFrame)
         progressView.autoresizingMask = [.FlexibleWidth, .FlexibleTopMargin]
         

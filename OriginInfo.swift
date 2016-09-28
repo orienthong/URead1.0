@@ -17,7 +17,6 @@ class OriginInfo: Object {
     dynamic var originIdentification = ""
     dynamic var originDescription = ""
     dynamic var originType = ""
-    dynamic var originInitial = ""
     
     override static func primaryKey() -> String? {
         return "originId"

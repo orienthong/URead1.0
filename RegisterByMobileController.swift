@@ -16,6 +16,8 @@ protocol RegisterByMobleControllerDelegate: class {
 }
 class RegisterByMobleController: UIViewController, ElasticMenuTransitionDelegate {
     
+    
+    
     var name: String = ""
     var phone: String = ""
     var verifyCode: String = ""

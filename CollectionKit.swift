@@ -32,13 +32,6 @@ class CollectionKit {
             
         }
     }
-//    dynamic var collectionId = ""
-//    dynamic var title = ""
-//    dynamic var url = ""
-//    dynamic var coverImgUrl = ""
-//    dynamic var newUrl = ""
-//    dynamic var createTime = NSDate()
-    
     func parseResult(data: JSON) {
         let result = data["result"].string!
         guard result == "0" else {
@@ -66,7 +59,7 @@ class CollectionKit {
     
     func collectArticle(withArticleUrl articleUrl: String, articleTitle: String,coverImageUrl: String, completionHandler: (Bool, NSError?) -> Void) {
         let parameters = [
-            "userId": Jinkey().getCurrentUserId(),
+            "userId": UserKit.sharedInstance.UserId!,
             "url": articleUrl,
             "title": articleTitle,
             "coverImgUrl": coverImageUrl

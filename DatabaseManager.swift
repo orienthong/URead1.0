@@ -136,4 +136,42 @@ class DatabaseManager {
             return true
         }
     }
+    //MARK: -OriginKit
+    // 获取所有信息源
+    func getOrigins() -> Results<OriginInfo> {
+        return origins
+    }
+    
+    // 筛选符合要求的信息源
+    func getOriginsByfilter(filter: NSPredicate) -> Results<OriginInfo> {
+        return origins.filter(filter)
+    }
+    
+    
+    // 获取本地信息源总数
+    func getOriginsCount() -> Int {
+        return origins.count
+    }
+    
+    // 插入一些信息源
+    func insertOriginsIntoReaml(origins: [OriginInfo]) {
+        do{
+            try realm.write{
+                realm.add(origins, update: true)
+            }
+        }catch let error as NSError{
+            print("写入出错 \(error)")
+        }
+    }
+    // 清空信息源数据
+    func clearOrigins() {
+        do{
+            try realm.write{
+                realm.delete(origins)
+            }
+        }catch{
+            print("删除出错")
+        }
+    }
+
 }
