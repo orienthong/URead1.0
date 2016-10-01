@@ -1,6 +1,6 @@
 //
 //  RegisterPickNameViewController.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/18/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -21,7 +21,7 @@ final class RegisterPickNameViewController: UIViewController, UITextFieldDelegat
     
     @IBOutlet weak var nameTextField: UITextField!
     
-    var dismissByForegroundDrag: Bool = true
+    //var dismissByForegroundDrag: Bool = true
     
     var phone: String = ""
     var verifyCode: String = ""

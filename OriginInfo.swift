@@ -1,6 +1,6 @@
 //
 //  OriginInfo.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/20/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -17,6 +17,7 @@ class OriginInfo: Object {
     dynamic var originIdentification = ""
     dynamic var originDescription = ""
     dynamic var originType = ""
+    dynamic var originInitial = ""
     
     override static func primaryKey() -> String? {
         return "originId"

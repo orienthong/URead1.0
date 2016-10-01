@@ -1,6 +1,6 @@
 //
 //  OriginSearch.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/20/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.

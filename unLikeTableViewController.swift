@@ -1,6 +1,6 @@
 //
 //  unLikeTableViewController.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 28/09/2016.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -9,43 +9,42 @@
 import UIKit
 
 class unLikeTableViewController: UITableViewController {
+    
+    let dbManager = DatabaseManager.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        if dbManager.getUnlikesCount() == 0 {
+            UnlikeKit.sharedInstance.getUnlikeForJSONAndInsertRealm({ (success, error) in
+                if success {
+                    print(self.dbManager.getUnlikesCount())
+                } else {
+                    print(error)
+                }
+            })
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return dbManager.getUnlikesCount()
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("unlikeListCell", forIndexPath: indexPath)
+        cell.textLabel!.text = dbManager.getUnlikes()[indexPath.row].title
+        cell.detailTextLabel!.text = String(dbManager.getUnlikes()[indexPath.row].createTime)
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

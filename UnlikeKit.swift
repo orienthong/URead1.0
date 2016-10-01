@@ -1,6 +1,6 @@
 //
 //  UnlikeKit.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/21/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -14,17 +14,16 @@ class UnlikeKit {
     
     static let sharedInstance = UnlikeKit()
     
-    func getUnlikeForJSONAndInsertRealm(completionHandler: (Bool) -> Void) {
+    func getUnlikeForJSONAndInsertRealm(completionHandler: (Bool, NSError?) -> Void) {
         let userId = UserKit.sharedInstance.UserId!
         let params: Dictionary<String, AnyObject> = ["userId": userId]
         let paramsURLEncoding = paramURLEncoding(apiName: "get_all_unlike_articles")
         request(.POST, "\(serverURL)get_all_unlike_articles", parameters: params, encoding: paramsURLEncoding, headers: nil).responseString { response in
             if let data = response.result.value {
                 let json = JSON.parse(data)
-                self.parseResult(json)
-                completionHandler(true)
+                self.parseResult(json, completionHandler: completionHandler)
             } else {
-                completionHandler(false)
+                completionHandler(false, response.result.error)
             }
             
         }
@@ -76,18 +75,21 @@ class UnlikeKit {
             }
         }
     }
-    func parseResult(json: JSON) {
+    func parseResult(json: JSON, completionHandler: (Bool, NSError?) -> Void) {
         let result = json["result"].string!
         guard result == "0" else {
             return
         }
         //let description = json["description"].string!
-        let unlikeList = json["unlikeList"].array!
-        
+        let unlikeList = json[Contants.getAllUnlikeArticles.unlikeList].array!
+        print(unlikeList.count)
         for unlike in unlikeList {
-            let articleId = unlike["id"].string!
-            let title = unlike["j_article_title"].string!
-            let url = unlike["j_article_origin_url"].string!
+            guard let articleId = unlike[Contants.getAllUnlikeArticles.articleId].string,
+            let title = unlike[Contants.getAllUnlikeArticles.articleTitle].string,
+            let url = unlike[Contants.getAllUnlikeArticles.articleUrl].string else {
+                completionHandler(false, NSError(domain: "could not parse json", code: 1, userInfo: nil))
+                return
+            }
             let createTime = NSDate()
             let unlikeArticle = UnlickInfo()
             unlikeArticle.articleId = articleId
@@ -96,6 +98,7 @@ class UnlikeKit {
             unlikeArticle.createTime = createTime
             dbManager.addUnlikesArticles([unlikeArticle])
         }
+        completionHandler(true, nil)
     }
     
 }

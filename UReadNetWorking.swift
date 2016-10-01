@@ -1,6 +1,6 @@
 //
 //  UReadNetWorking.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/17/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -59,7 +59,7 @@ public func checkIsExist(phone: String, failureHandler: FailureHandler?, complet
             if let jsonData = response.result.value {
                 let json = JSON.parse(jsonData)
                 //print("CheckJSON:\(json)")
-                if let errorCode = json["result"].int, let message = json["description"].string {
+                if let errorCode = json["result"].int {
                     if errorCode == 1 {
                         //failureHandler?(reason: .PhoneIsExist, errorMessage: "PhoneIsExist")
                         completionHandler(true)

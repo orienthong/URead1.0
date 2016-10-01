@@ -1,6 +1,6 @@
 //
 //  ArticleKit.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/21/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -139,13 +139,13 @@ class ArticleKit {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         if
-            let articleId = json["id"].string,
+            let articleId = json["ariticleid"].string,
             let articleTitle = json["articleTitle"].string,
             let author = author,
             let cover_image = json["articleCoverImg"].string,
             let article_description = json["articleDescription"].string,
             let publish_time = dateFormatter.dateFromString(json["articleTime"].string!),
-            let link = json["articleOriginUrl"].string,
+            let link = json["articleUrl"].string,
             let origin = json["articleOrigin"].string {
             let article = ArticleInfo()
             article.id = articleId

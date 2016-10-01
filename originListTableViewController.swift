@@ -1,6 +1,6 @@
 //
 //  originListTableViewController.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 28/09/2016.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -8,16 +8,24 @@
 
 import UIKit
 import AlamofireImage
+import RealmSwift
 
 class originListTableViewController: UITableViewController {
     
     let dbManager = DatabaseManager.sharedInstance
-    var originList: [OriginInfo]
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        originList = dbManager.getOrigins()
+        
+        if dbManager.getOriginsCount() == 0 {
+            OriginKit.sharedInstance.loadOriginlist({ (success, error) in
+                if success {
+                    print(success)
+                } else {
+                    print(error)
+                }
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,9 +48,8 @@ class originListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("originListCell", forIndexPath: indexPath) as! OriginListTableViewCell
-        
-        cell.configure(<#T##origin: OriginInfo##OriginInfo#>)
-
+        let origin = dbManager.getOrigins()[indexPath.row]
+        cell.configure(origin)
         return cell
     }
  

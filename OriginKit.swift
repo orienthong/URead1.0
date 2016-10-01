@@ -1,6 +1,6 @@
 //
 //  OriginKit.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/21/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -16,7 +16,7 @@ class OriginKit {
 
     static let sharedInstance = OriginKit()
     
-        func collectArticle(withArticleUrl articleUrl: String, articleTitle: String,coverImageUrl: String, completionHandler: (Bool, NSError?) -> Void) {
+        func loadOriginlist(completionHandler: (Bool, NSError?) -> Void) {
         guard let userID = UserKit.sharedInstance.UserId else {
             completionHandler(false, NSError(domain: "未登录", code: 1, userInfo: nil))
             return

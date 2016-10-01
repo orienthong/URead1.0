@@ -1,6 +1,6 @@
 //
 //  OriginListTableViewCell.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 28/09/2016.
 //  Copyright © 2016 Hao Dong. All rights reserved.

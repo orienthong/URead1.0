@@ -1,6 +1,6 @@
 //
 //  FavorListTableViewController.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 22/09/2016.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -13,33 +13,42 @@ class FavorListTableViewController: UITableViewController {
     var loader: LiquidLoader!
     let dbManager = DatabaseManager.sharedInstance
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if dbManager.getCollectionsCount() == 0 {
+            CollectionKit.sharedInstance.getCollectionForJSONAndInsertRealm({ (success, error) in
+                if success {
+                    print(self.dbManager.getCollectionsCount())
+                } else {
+                    print(error)
+                }
+                
+            })
+        }
+        
     }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return dbManager.getCollectionsCount()
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCellWithIdentifier("FavorListCell", forIndexPath: indexPath)
+        cell.textLabel!.text = dbManager.getCollections()[indexPath.row].title
+        cell.detailTextLabel!.text = String(dbManager.getCollections()[indexPath.row].createTime)
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.

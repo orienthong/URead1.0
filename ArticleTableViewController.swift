@@ -1,6 +1,6 @@
 //
 //  ArticleTableViewController.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 9/21/16.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -153,8 +153,6 @@ class ArticleTableViewController: UITableViewController {
         return 200
     }
     
-    //
-    
     func initLoadMoreView() {// 上拉加载更多的组建
         
         if loadMoreFooterView == nil {
@@ -243,27 +241,7 @@ class ArticleTableViewController: UITableViewController {
         if (loadingMoreShowing) {
             loadMoreFooterView!.loadMoreScrollViewDidEndDragging(scrollView)
         }
-        
-        
-        
-//        if tableView.contentOffset.y > latestOffset {
-//            
-//            // 列表上滑的时候隐藏导航栏和 tabbar
-//            self.tabBarController?.tabBar.hidden = true
-//            
-//            
-//            latestOffset = tableView.contentOffset.y
-//            
-//        }else {
-//            
-//            // 列表下滑的时候显示导航栏和 tabbar
-//            UIView.animateWithDuration(0.5, animations: {
-//                
-//                self.tabBarController?.tabBar.hidden = false
-//            })
-//            
-//            latestOffset = tableView.contentOffset.y
-//        }
+
         
     }
 

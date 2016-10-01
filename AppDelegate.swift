@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 16/9/15.
 //  Copyright © 2016年 Hao Dong. All rights reserved.

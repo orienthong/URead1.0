@@ -1,6 +1,6 @@
 //
 //  Contants.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 24/09/2016.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -96,7 +96,45 @@ struct Contants {
         static let userId = "userId"
         static let articleId = "articleId"
         static let originId = "originId"
-        
+    }
+    struct cancelUnlikeArticle {
+        static let apiName =  "cancel_unlike_article"
+        static let userId = "userId"
+        static let articleId = "articleId"
+        static let originId = "originId"
+        static let result = "result"
+        static let description = "description"
+    }
+    struct getAllUnlikeArticles {
+        static let apiName = "get_all_unlike_articles"
+        static let userId = "userId"
+        static let result = "result"
+        static let description = "description"
+        static let unlikeList = "unlikeList"
+        static let articleUrl = "articleUrl"
+        static let interesting = "insteresting"
+        static let articleDescription = "articleDesctiption"
+        static let articleAuthor = "articleAuthor"
+        static let articleTime = "articleTime"
+        static let articleCoverImg = "articleCoverImg"
+        static let articleTitle = "articleTitle"
+        static let articleOrigin = "articleOrigin"
+        static let articleId = "articleId"
+        static let articleTag = "articleTag"
+        static let originId = "originId"
+    }
+    struct getCollectionList {
+        static let apiName = "get_collection_list"
+        static let userId = "userId"
+        static let result = "result"
+        static let description = "description"
+        static let collectionList = "collectionList"
+        static let coverImgUrl = "coverImgUrl"
+        static let newUrl = "newUrl"
+        static let collectionId = "collectionId"
+        static let url = "url"
+        static let title = "title"
+        static let createTime = "createTime"
     }
     
 }

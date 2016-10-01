@@ -1,6 +1,6 @@
 //
 //  VerifyPhoneViewController.swift
-//  URead1.0
+//  uread
 //
 //  Created by Hao Dong on 27/09/2016.
 //  Copyright © 2016 Hao Dong. All rights reserved.
@@ -25,10 +25,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate,UIViewControlle
     let bartintcolor : UIColor = UIColor.whiteColor()
     @IBInspectable
     let titleColor : UIColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-    @IBAction func loginButton(sender: TKTransitionSubmitButton) {
+    @IBAction func loginButton(sender: UIButton) {
         login()
     }
-    @IBAction func registerButtonTapped(sender: TKTransitionSubmitButton) {
+    @IBAction func registerButtonTapped(sender: UIButton) {
         let sb = UIStoryboard(name: "Login+Register", bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier("RegisterPickNameViewController") as! RegisterPickNameViewController
         self.transition.edge = .Right
